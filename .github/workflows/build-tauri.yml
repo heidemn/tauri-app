@@ -63,5 +63,11 @@ jobs:
       - name: build
         run: npm run tauri build
 
-      - name: show results
+      - name: show results (Linux)
+        if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
         run: ls -l src-tauri/target/release/bundle/*
+ 
+      - name: show results (Windows)
+        if: matrix.platform != 'ubuntu-22.04' 
+        run: ls -Recurse src-tauri/target/release/bundle
+
